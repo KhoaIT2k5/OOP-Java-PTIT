@@ -1,0 +1,33 @@
+package MANG_DOI_TUONG.J05007_SAP_XEP_DANH_SACH_DOI_TUONG_NHAN_VIEN;
+
+
+import java.util.*;
+
+public class J05007 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<NhanVien> nv = new ArrayList<>();
+        int n = Integer.parseInt(sc.nextLine());
+        for(int i=1 ; i<=n ; i++) {
+            String ma = String.format("%05d", i);
+            String ten = sc.nextLine(), 
+                    gt = sc.nextLine(), 
+                    ns = sc.nextLine(), 
+                    dc = sc.nextLine(), 
+                    mst = sc.nextLine(), 
+                    hd = sc.nextLine();
+            NhanVien s = new NhanVien(ma,ten,gt,ns,dc,mst,hd);
+            nv.add(s); 
+        }
+        Collections.sort(nv, (NhanVien x, NhanVien y)-> {
+            if(x.getNamSinh() != y.getNamSinh()) return x.getNamSinh()-y.getNamSinh();
+            else {
+                if(x.getThangSinh() != y.getThangSinh()) 
+                    return x.getThangSinh() - y.getThangSinh();
+                else return x.getNgaySinh() - y.getNgaySinh();
+            }
+        });
+        for(NhanVien x : nv)  System.out.println(x);
+        sc.close();
+    }   
+}
